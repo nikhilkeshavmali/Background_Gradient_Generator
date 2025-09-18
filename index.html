@@ -9,22 +9,31 @@
   <body>
     <section>
       <div>
+        <!-- Buttons for generating random colors -->
         <button id="myButton">#051937</button>
         <button id="myButton1">#008793</button>
       </div>
+
       <h2>Copy your code here</h2>
+
+      <!-- Div that displays the CSS gradient code -->
       <div class="copyCode">
         background-image: linear-gradient(to right, rgb(92,145,229),
         rgb(152,63,198))
       </div>
     </section>
+
     <script>
+      // Get references to DOM elements
       let btn1 = document.getElementById("myButton");
       let btn2 = document.getElementById("myButton1");
       let copyDiv = document.querySelector(".copyCode");
-      let rgb1 = "#000";
-      let rgb2 = "#fff";
 
+      // Default gradient colors
+      let rgb1 = "#004773";
+      let rgb2 = "#54d542";
+
+      // Function to generate a random HEX color
       const hexValues = () => {
         let myHexaValues = "0123456789abcdef";
         let colors = "#";
@@ -34,26 +43,36 @@
         return colors;
       };
 
+      // Handler for Button 1 -> change first color
       const handleButton1 = () => {
-        rgb1 = hexValues();
+        rgb1 = hexValues(); // generate random color
         console.log(rgb1);
-        btn1.innerHTML = rgb1;
+        btn1.innerHTML = rgb1; // update button text
+        // Apply new gradient on body background
         document.body.style.backgroundImage = `linear-gradient(to right,${rgb1},${rgb2})`;
-        copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
-      };
-      const handleButton2 = () => {
-        rgb2 = hexValues();
-        console.log(rgb2);
-        btn2.innerHTML = rgb2;
-        document.body.style.backgroundImage = `linear-gradient(to right,${rgb1},${rgb2})`;
+        // Update code snippet for copy
         copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
       };
 
+      // Handler for Button 2 -> change second color
+      const handleButton2 = () => {
+        rgb2 = hexValues(); // generate random color
+        console.log(rgb2);
+        btn2.innerHTML = rgb2; // update button text
+        // Apply new gradient on body background
+        document.body.style.backgroundImage = `linear-gradient(to right,${rgb1},${rgb2})`;
+        // Update code snippet for copy
+        copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+      };
+
+      // Add event listeners for buttons
       btn1.addEventListener("click", handleButton1);
       btn2.addEventListener("click", handleButton2);
 
+      // Copy gradient code to clipboard when clicking on copyDiv
       copyDiv.addEventListener("click", () => {
         navigator.clipboard.writeText(copyDiv.innerText);
+        alert("CSS code copied!"); // optional feedback
       });
     </script>
   </body>
